@@ -14,7 +14,6 @@ st.write(
 title = st.text_input('Name on Smoothie:')
 st.write("The name on your Smoothie will be: ", title)
 
-
 cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
@@ -39,12 +38,16 @@ if ingredients_list:
 
     #st.write(my_insert_stmt)
     #st.stop()
-        
-    time_to_insert = st.button('Submit Order')
+    
+time_to_insert = st.button('Submit Order')
 
-    if time_to_insert:
-        session.sql(my_insert_stmt).collect()
+if time_to_insert:
+    session.sql(my_insert_stmt).collect()
         
-        st.success('Your Smoothie is ordered, ' + title + '', icon="✅")
+    st.success('Your Smoothie is ordered, ' + title + '', icon="✅")
 
+
+
+        
+        
 
